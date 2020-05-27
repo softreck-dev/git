@@ -57,20 +57,7 @@
 </header>
 
 <div class="page-content">
-    <div class="page-content__section">
-        <div class="page-content__wrapper">
-            <h2 class="page-heading">Repositories</h2>
-            <div class="languages">
-                <h3 class="languages__title">Top languages</h3>
-            </div>
-        </div>
-    </div>
 
-    <div class="page-content__section page-content__section--repos">
-        <div class="page-content__wrapper">
-            <ol class="repos"></ol>
-        </div>
-    </div>
 </div>
 
 <footer class="page-footer">
@@ -92,11 +79,29 @@
         }
     });
 
-    $(function () {
-        const apiUrl = 'https://api.github.com/orgs/paas-info';
+    function loadGithubOrg(organisation) {
+
+        const apiUrl = 'https://api.github.com/orgs/' + organisation;
         // const apiUrl = 'https://api.github.com/softreck';
         let totalStars = 0;
         const languages = {};
+
+        $('.page-content').append(`<div class="page-content__section">
+        <div class="page-content__wrapper">
+            <h2 class="page-heading ${organisation}"></h2>
+            <div class="languages">
+                <h3 class="languages__title">Top languages</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content__section page-content__section--repos">
+        <div class="page-content__wrapper">
+            <ol class="repos ${organisation}"></ol>
+        </div>
+    </div>`);
+
+        $('.page-heading.' + organisation).append(`<span>${organisation}</span>`);
 
         $.ajax(`${apiUrl}/repos?per_page=1000`, {
             success: (data) => {
@@ -107,7 +112,7 @@
                         languages[repo.language] = languages[repo.language] ? ++languages[repo.language] : 1;
                     }
 
-                    $('ol.repos').append(`
+                    $('ol.repos.'+organisation).append(`
               <li class="repos__item repo">
                   <div class="card">
                       <header class="card__header">
@@ -156,7 +161,18 @@
                 });
             }
         });
-    });
+    } //function     loadGithubOrg();
+
+
+    loadGithubOrg("api-foundation");
+    loadGithubOrg("apicra");
+    loadGithubOrg("api-build");
+    loadGithubOrg("apisql");
+    loadGithubOrg("apiunit");
+    loadGithubOrg("apiexec");
+    loadGithubOrg("apifunc");
+
+
 </script>
 </body>
 </html>
