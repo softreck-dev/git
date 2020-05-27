@@ -83,7 +83,6 @@
 
 
 <script src="vendors/jquery-3.2.1.min.js"></script>
-<script src="vendors/svg4everybody.min.js"></script>
 <script>
     $(window).scroll(function () {
         if ($(window).scrollTop() >= 140) {
@@ -95,8 +94,8 @@
     svg4everybody();
 
     $(function () {
-        // const apiUrl = 'https://api.github.com/orgs/softreck';
-        const apiUrl = 'https://api.github.com/softreck/repos';
+        const apiUrl = 'https://api.github.com/orgs/faas-info';
+        // const apiUrl = 'https://api.github.com/softreck/repos';
         let totalStars = 0;
         const languages = {};
 
@@ -150,7 +149,7 @@
                 $('.stats__count-repos').text(data.length);
                 $('.stats__count-languages').text(Object.keys(languages).length);
 
-                const colors = ['4f5d95', 'f1e05a', '89e051'];
+                const colors = ['111111', '777777', 'cccccc'];
                 Object.keys(languages).sort((a, b) => languages[b] - languages[a]).slice(0, 3).forEach((language, index) => {
                     $('.languages').append(
                         `<a class="languages__name" href="https://github.com/softreck?language=${language.toLowerCase()}" target="_blank" style="background-color:#${colors[index]};">${language}</a>`
