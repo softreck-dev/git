@@ -35,21 +35,18 @@
             <ul class="page-header__stats stats">
                 <li class="stats__item">
                     <span class="stats__label">
-                        <svg class="icon stats__icon"><use xlink:href="assets/images/symbols.svg#i-star"/></svg>
                         <span>Stars</span>
                     </span>
                     <span class="stats__count stats__count-stars"></span>
                 </li>
                 <li class="stats__item">
                     <span class="stats__label">
-                        <svg class="icon stats__icon"><use xlink:href="assets/images/symbols.svg#i-repo"/></svg>
                         <span>Repositories</span>
                     </span>
                     <span class="stats__count stats__count-repos"></span>
                 </li>
                 <li class="stats__item">
                     <span class="stats__label">
-                        <svg class="icon stats__icon"><use xlink:href="assets/images/symbols.svg#i-code"/></svg>
                         <span>Languages</span>
                     </span>
                     <span class="stats__count stats__count-languages"></span>
@@ -98,7 +95,8 @@
     svg4everybody();
 
     $(function () {
-        const apiUrl = 'https://api.github.com/orgs/softreck';
+        // const apiUrl = 'https://api.github.com/orgs/softreck';
+        const apiUrl = 'https://api.github.com/softreck/repos';
         let totalStars = 0;
         const languages = {};
 
@@ -117,7 +115,7 @@
                       <header class="card__header">
                           <a class="repo__title" href="${repo.html_url}" target="_blank">
                               <span class="repo__title-text">${repo.name}</span>
-                              <svg class="icon repo__title-icon"><use xlink:href="assets/images/symbols.svg#i-${repo.name.startsWith('ext-') ? 'package' : 'repo'}"/></svg>
+                              <svg class="icon repo__title-icon">${repo.name.startsWith('ext-') ? 'package' : 'repo'}</svg>
                           </a>
                       </header>
                       <div class="card__content">
@@ -127,21 +125,17 @@
                           <div class="repo__summary">
                               ${!repo.language ? '' :
                         `<span class="repo__summary-item">
-                                      <svg class="icon repo__summary-icon"><use xlink:href="assets/images/symbols.svg#i-code"/></svg>
                                       <span class="repo__summary-text">${repo.language}</span>
                                   </span>`
                     }
                               <a href="${repo.html_url}/stargazers" target="_blank" class="repo__summary-item">
-                                  <svg class="icon repo__summary-icon"><use xlink:href="assets/images/symbols.svg#i-star"/></svg>
                                   <span class="repo__summary-text">${repo.stargazers_count}</span>
                               </a>
                               <a href="${repo.html_url}/network" target="_blank" class="repo__summary-item">
-                                  <svg class="icon repo__summary-icon"><use xlink:href="assets/images/symbols.svg#i-repo-forked"/></svg>
                                   <span class="repo__summary-text">${repo.forks_count}</span>
                               </a>
                               ${!repo.homepage ? '' :
                         `<a href="${repo.homepage}" target="_blank" class="repo__summary-item">
-                                      <svg class="icon repo__summary-icon"><use xlink:href="assets/images/symbols.svg#i-globe"/></svg>
                                       <span class="repo__summary-text">Website</span>
                                   </a>`
                     }
