@@ -12,6 +12,38 @@
     <script src="//get.jloads.com/jloads-url.js?1"></script>
     <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 
+    <script>
+
+        jloadsUrl({
+            "head": [
+                // "//code.jquery.com/jquery-3.5.1.min.js",
+                // "vendors/jquery-3.2.1.min.js",
+                // "cdn/jquery-3.3.1.slim.min.js",
+                "css/fade-in.css",
+                "css/index.css",
+                // "js/scroll.js",
+                "js/github.js",
+            ],
+            // "body": [
+            //     "js/config.js"
+            // ],
+            ".header": [
+                "html/header.html",
+            ],
+            ".footer": [
+                "html/footer.html",
+            ],
+        });
+
+    </script>
+
+<!--    <script>-->
+<!--        document.addEventListener("DOMContentLoaded", function(event) {-->
+<!--            console.log("DOM fully loaded and parsed");-->
+<!--            var jloads1 = new Load("body");-->
+<!--            jloads1.js("js/config.js");-->
+<!--        });-->
+<!--    </script>-->
 
 </head>
 <body>
@@ -21,56 +53,6 @@
 <div class="footer"></div>
 
 
-<script>
-
-    jloadsUrl({
-        "head": [
-            // "//code.jquery.com/jquery-3.5.1.min.js",
-            // "vendors/jquery-3.2.1.min.js",
-            // "cdn/jquery-3.3.1.slim.min.js",
-            "css/fade-in.css",
-            "css/index.css",
-            // "js/scroll.js",
-            "js/github.js",
-        ],
-        // "body": [
-        //     "js/config.js"
-        // ],
-        ".header": [
-            "html/header.html",
-        ],
-        ".footer": [
-            "html/footer.html",
-        ],
-        // "form": [
-        //     "//www.paas.info/js/form.js",
-        // ],
-        // "#messages": [
-        //     "//www.paas.info/js/message.js"
-        // ],
-        // "#forms": [
-        //     "//www.paas.info/html/server.html"
-        // ],
-        // "#apps": [
-        //     "//www.paas.info/html/app-list.html"
-        // ],
-        // "#images": [
-        //     "//logo.paas.info/2/cover.png"
-        // ]
-    });
-
-
-
-
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        console.log("DOM fully loaded and parsed");
-        var jloads1 = new Load("body");
-        jloads1.js("js/config.js");
-    });
-</script>
 
 </body>
 </html>
