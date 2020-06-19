@@ -4,57 +4,51 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="images/favicon.ico" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="css/index.css">
+
     <title>Softreck Open Source Projects</title>
-    <link href="assets/images/favicon.ico" rel="icon" type="image/x-icon">
-    <link rel="stylesheet" href="assets/css/index.css">
+
+    <script src="//get.jloads.com/jloads-target.js"></script>
+
+    <script>
+
+        jloadsUrl({
+            "head": [
+                "//code.jquery.com/jquery-3.5.1.min.js",
+                // "cdn/jquery-3.3.1.slim.min.js",
+                // "//stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
+                // "//stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
+                "//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js",
+                "//www.paas.info/css/style.css",
+                "//www.paas.info/css/fade-in.css",
+                // "//www.paas.info/cdn/flowtype.js",
+            ],
+            "body": [
+                "/html/header.html",
+            ],
+            // "form": [
+            //     "//www.paas.info/js/form.js",
+            // ],
+            // "#messages": [
+            //     "//www.paas.info/js/message.js"
+            // ],
+            // "#forms": [
+            //     "//www.paas.info/html/server.html"
+            // ],
+            // "#apps": [
+            //     "//www.paas.info/html/app-list.html"
+            // ],
+            // "#images": [
+            //     "//logo.paas.info/2/cover.png"
+            // ]
+        });
+
+    </script>
+
 </head>
 <body>
-<header class="page-header">
-    <div class="page-header__inner">
 
-        <div class="page-header__top">
-            <div class="page-header__top-inner">
-                <a class="page-header__logo" href="https://www.softreck.com" target="_blank">
-                    <img src="assets/images/logo.png" width="64"/>
-                </a>
-                <nav class="main-nav">
-                    <ul class="main-nav__list">
-                        <li class="main-nav__item">
-                            <a class="main-nav__link" target="_blank" href="https://github.com/softreck">We @ GitHub</a>
-                        </li>
-                        <li class="main-nav__item">
-                            <a class="main-nav__link" target="_blank" href="https://www.softreck.com">Official Website</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
-        <div class="page-header__main">
-            <h1 class="page-header__title">Softreck <span class="page-header__subtitle">Open Source Projects</span></h1>
-            <ul class="page-header__stats stats">
-                <li class="stats__item">
-                    <span class="stats__label">
-                        <span>Stars</span>
-                    </span>
-                    <span class="stats__count stats__count-stars"></span>
-                </li>
-                <li class="stats__item">
-                    <span class="stats__label">
-                        <span>Repositories</span>
-                    </span>
-                    <span class="stats__count stats__count-repos"></span>
-                </li>
-                <li class="stats__item">
-                    <span class="stats__label">
-                        <span>Languages</span>
-                    </span>
-                    <span class="stats__count stats__count-languages"></span>
-                </li>
-            </ul>
-        </div>
-    </div>
-</header>
 
 <div class="page-content">
 
@@ -62,8 +56,8 @@
 
 <footer class="page-footer">
     <div class="page-footer__inner">
-        <div class="footer-copyright">© 2020 Softreck OÜ. All rights reserved. Softreck and the softreck logo are trademarks of Softreck
-            OÜ
+        <div class="footer-copyright">
+            © 2020 Softreck OÜ. All rights reserved. Softreck and the softreck logo are trademarks of Softreck OÜ
         </div>
     </div>
 </footer>
@@ -86,22 +80,22 @@
         let totalStars = 0;
         const languages = {};
 
-        $('.page-content').append(`<div class="page-content__section">
+        $('.page-content').append(`<div class="page-content__section ${organisation}">
         <div class="page-content__wrapper">
-            <h2 class="page-heading ${organisation}"></h2>
+            <h2 class="page-heading"></h2>
             <div class="languages">
                 <h3 class="languages__title">Top languages</h3>
             </div>
         </div>
     </div>
 
-    <div class="page-content__section page-content__section--repos">
+    <div class="page-content__section page-content__section--repos ${organisation}">
         <div class="page-content__wrapper">
-            <ol class="repos ${organisation}"></ol>
+            <ol class="repos"></ol>
         </div>
     </div>`);
 
-        $('.page-heading.' + organisation).append(`<span>${organisation}</span>`);
+        $('.' + organisation + ' .page-heading').append(`<span>${organisation}</span>`);
 
         $.ajax(`${apiUrl}/repos?per_page=1000`, {
             success: (data) => {
@@ -112,7 +106,7 @@
                         languages[repo.language] = languages[repo.language] ? ++languages[repo.language] : 1;
                     }
 
-                    $('ol.repos.'+organisation).append(`
+                    $('.' + organisation + ' ol.repos').append(`
               <li class="repos__item repo">
                   <div class="card">
                       <header class="card__header">
@@ -155,7 +149,7 @@
 
                 const colors = ['111111', '777777', 'cccccc'];
                 Object.keys(languages).sort((a, b) => languages[b] - languages[a]).slice(0, 3).forEach((language, index) => {
-                    $('.languages').append(
+                    $('.' + organisation + ' .languages').append(
                         `<a class="languages__name" href="https://github.com/softreck?language=${language.toLowerCase()}" target="_blank" style="background-color:#${colors[index]};">${language}</a>`
                     );
                 });
@@ -164,14 +158,23 @@
     } //function     loadGithubOrg();
 
 
-    loadGithubOrg("api-foundation");
-    loadGithubOrg("apicra");
-    loadGithubOrg("api-build");
-    loadGithubOrg("apisql");
-    loadGithubOrg("apiunit");
-    loadGithubOrg("apiexec");
-    loadGithubOrg("apifunc");
+    function loadGitProjects(projects) {
+        for (var i in projects) {
+            var project = projects[i];
+            loadGithubOrg(project);
+        }
+    }
 
+
+    loadGitProjects([
+        "api-foundation",
+        "apicra",
+        "api-build",
+        "apisql",
+        "apiunit",
+        "apiexec",
+        "apifunc"
+    ]);
 
 </script>
 </body>
