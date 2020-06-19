@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="images/favicon.ico" rel="icon" type="image/x-icon">
-<!--    <link rel="stylesheet" href="css/index.css">-->
+    <!--    <link rel="stylesheet" href="css/index.css">-->
 
     <title>Softreck Open Source Projects</title>
 
@@ -24,9 +24,13 @@
                 "js/github.js",
             ],
             "body": [
-                "html/header.html",
-                "html/footer.html",
                 "js/config.js"
+            ],
+            ".header": [
+                "html/header.html",
+            ],
+            ".footer": [
+                "html/footer.html",
             ],
             // "form": [
             //     "//www.paas.info/js/form.js",
@@ -50,6 +54,9 @@
 </head>
 <body>
 
+<div class="header"></div>
+<div class="page-content"></div>
+<div class="footer"></div>
 
 </body>
 </html>
